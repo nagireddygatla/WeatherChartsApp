@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+    var temp, temp1,temp2,temp3, temp4, temp5,temp6,temp7;
+        window.onload = function () {
+        	var url = document.location.href;
+        	var data = url.split("=");
+        	var latlon = data[1];
+        	//alert(latlon);
+        	var today = new Date();
+        	var dd = today.getDate();
+        	var mm = today.getMonth(); //January is 0!
+        	var yyyy = today.getFullYear();
+        	var humid,dew;
+        	var time = (today.getTime() / 1000).toFixed(0);
+        	var async1 = $.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+latlon +"," + time,
+        		dataType: 'jsonp',
+        		async: false,
+        		headers: {
+        			'Access-Control-Allow-Origin' : '*',
+    				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+    				'Content-Type': 'application/json',
+    				'Accept': 'application/json'
+        			   
+        			   },
+        		    success: function(data, status){
+        		        //alert("Data: " + data + "\nStatus: " + status);
+        		        var jsonString = JSON.stringify(data);
+        		        //alert(jsonString);
+        		        
+        		        temp = data.currently.temperature;
+        		        dew = data.currently.dewPoint;
+        		        humid = data.currently.humidity;
+        		        //alert(temp);
+        		        //alert(dew);
+        		        //alert(humid);
+        		        
+        		    }});
+        	
+        	var day1 =  new Date();
+        	day1.setDate(day1.getDate()-1);
+        	var dd1 = day1.getDate();
+        	var mm1 = day1.getMonth(); //January is 0!
+        	var yyyy1 = day1.getFullYear();
+        	var humid1,dew1;
+        	var time1 = (day1.getTime() / 1000).toFixed(0);
+        	var async2 = $.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+latlon +"," + time1,
+        		dataType: 'jsonp',
+        		async: false,
+        		headers: {
+        			'Access-Control-Allow-Origin' : '*',
+    				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+    				'Content-Type': 'application/json',
+    				'Accept': 'application/json'
+        			   
+        			   },
+        		    success: function(data, status){
+        		        //alert("Data: " + data + "\nStatus: " + status);
+        		        var jsonString = JSON.stringify(data);
+        		        //alert(jsonString);
+        		        
+        		        temp1 = data.currently.temperature;
+        		        dew1 = data.currently.dewPoint;
+        		        humid1 = data.currently.humidity;
+        		        //alert(temp1);
+        		        //alert(dew1);
+        		        //alert(humid1);
+        		        
+        		    }});
+         	
+         	
+        	var day2 =  new Date();
+        	day2.setDate(day2.getDate()-2);
+        	var dd2 = day2.getDate();
+        	var mm2 = day2.getMonth(); //January is 0!
+        	var yyyy2 = day2.getFullYear();
+         	var humid2,dew2;
+        	var time2 = (day2.getTime() / 1000).toFixed(0);
+        	var async3 = $.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+latlon +"," + time2,
+        		dataType: 'jsonp',
+        		async: false,
+        		headers: {
+        			'Access-Control-Allow-Origin' : '*',
+    				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+    				'Content-Type': 'application/json',
+    				'Accept': 'application/json'
+        			   
+        			   },
+        		    success: function(data, status){
+        		        //alert("Data: " + data + "\nStatus: " + status);
+        		        var jsonString = JSON.stringify(data);
+        		        //alert(jsonString);
+        		        
+        		        temp2 = data.currently.temperature;
+        		        dew2 = data.currently.dewPoint;
+        		        humid2 = data.currently.humidity;
+        		        //alert(temp2);
+        		        //alert(dew2);
+        		        //alert(humid2);
+        		        
+        		    }});
+         	
+        	var day3 =  new Date();
+        	day3.setDate(day3.getDate()-3);
+        	var dd3 = day3.getDate();
+        	var mm3 = day3.getMonth(); //January is 0!
+        	var yyyy3 = day3.getFullYear();
+         	var humid3,dew3;
+        	var time3 = (day3.getTime() / 1000).toFixed(0);
+        	var async4 = $.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+latlon +"," + time3,
+        		dataType: 'jsonp',
+        		async: false,
+        		headers: {
+        			'Access-Control-Allow-Origin' : '*',
+    				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+    				'Content-Type': 'application/json',
+    				'Accept': 'application/json'
+        			   
+        			   },
+        		    success: function(data, status){
+        		        //alert("Data: " + data + "\nStatus: " + status);
+        		        var jsonString = JSON.stringify(data);
+        		        ///alert(jsonString);
+        		        
+        		        temp3 = data.currently.temperature;
+        		        dew3= data.currently.dewPoint;
+        		        humid3 = data.currently.humidity;
+        		        //alert(temp3);
+        		        //alert(dew3);
+        		        //alert(humid3);
+        		        
+        		    }});
+         	
+        	var day4 =  new Date();
+        	day4.setDate(day4.getDate()-4);
+        	var dd4 = day4.getDate();
+        	var mm4 = day4.getMonth(); //January is 0!
+        	var yyyy4 = day4.getFullYear();
+         	var humid4,dew4;
+        	var time4 = (day4.getTime() / 1000).toFixed(0);
+        	var async5 = $.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+latlon +"," + time4,
+        		dataType: 'jsonp',
+        		async: false,
+        		headers: {
+        			'Access-Control-Allow-Origin' : '*',
+    				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+    				'Content-Type': 'application/json',
+    				'Accept': 'application/json'
+        			   
+        			   },
+        		    success: function(data, status){
+        		        //alert("Data: " + data + "\nStatus: " + status);
+        		        var jsonString = JSON.stringify(data);
+        		        //alert(jsonString);
+        		        
+        		        temp4 = data.currently.temperature;
+        		        dew4= data.currently.dewPoint;
+        		        humid4 = data.currently.humidity;
+        		        //alert(temp4);
+        		        //alert(dew4);
+        		        //alert(humid4);
+        		        
+        		    }});
+         	
+        	var day5 =  new Date();
+        	day5.setDate(day5.getDate()-5);
+        	var dd5 = day5.getDate();
+        	var mm5 = day5.getMonth(); //January is 0!
+        	var yyyy5 = day5.getFullYear();
+         	var humid5,dew5;
+        	var time5 = (day5.getTime() / 1000).toFixed(0);
+        	var async6 = $.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+latlon +"," + time5,
+        		dataType: 'jsonp',
+        		async: false,
+        		headers: {
+        			'Access-Control-Allow-Origin' : '*',
+    				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+    				'Content-Type': 'application/json',
+    				'Accept': 'application/json'
+        			   
+        			   },
+        		    success: function(data, status){
+        		        //alert("Data: " + data + "\nStatus: " + status);
+        		        var jsonString = JSON.stringify(data);
+        		        //alert(jsonString);
+        		        
+        		        temp5 = data.currently.temperature;
+        		        dew5= data.currently.dewPoint;
+        		        humid5 = data.currently.humidity;
+        		        /* alert(temp5);
+        		        alert(dew5);
+        		        alert(humid5);
+        		         */
+        		    }});
+         	
+           	var day6 =  new Date();
+        	day6.setDate(day6.getDate()-6);
+        	var dd6 = day6.getDate();
+        	var mm6 = day6.getMonth(); //January is 0!
+        	var yyyy6 = day6.getFullYear();
+         	var humid6,dew6;
+        	var time6 = (day6.getTime() / 1000).toFixed(0);
+        	var async7 = $.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+latlon +"," + time6,
+        		dataType: 'jsonp',
+        		async: false,
+        		headers: {
+        			'Access-Control-Allow-Origin' : '*',
+    				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+    				'Content-Type': 'application/json',
+    				'Accept': 'application/json'
+        			   
+        			   },
+        		    success: function(data, status){
+        		        //alert("Data: " + data + "\nStatus: " + status);
+        		        var jsonString = JSON.stringify(data);
+        		        //alert(jsonString);
+        		        
+        		        temp6 = data.currently.temperature;
+        		        dew6= data.currently.dewPoint;
+        		        humid6 = data.currently.humidity;
+        		        /* alert(temp6);
+        		        alert(dew6);
+        		        alert(humid6);
+        		        
+ */        		    }});
+         	
+        	var day7 =  new Date();
+        	day7.setDate(day7.getDate()-7);
+        	var dd7 = day7.getDate();
+        	var mm7 = day7.getMonth(); //January is 0!
+        	var yyyy7 = day7.getFullYear();
+         	var humid7,dew7;
+        	var time7 = (day7.getTime() / 1000).toFixed(0);
+        	var async8 = $.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+latlon +"," + time7,
+        		dataType: 'jsonp',
+        		async: false,
+        		headers: {
+        			'Access-Control-Allow-Origin' : '*',
+    				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+    				'Content-Type': 'application/json',
+    				'Accept': 'application/json'
+        			   
+        			   },
+        		    success: function(data, status){
+        		        //alert("Data: " + data + "\nStatus: " + status);
+        		        var jsonString = JSON.stringify(data);
+        		       // alert(jsonString);
+        		        
+        		        temp7 = data.currently.temperature;
+        		        dew7= data.currently.dewPoint;
+        		        humid7 = data.currently.humidity;
+        		        /* alert(temp7);
+        		        alert(dew7);
+        		        alert(humid7);
+        		         */
+        		    }});
+        	
+        	
+        	$.when(async1, async2,async3,async4,async5,async6,async7,async8).done(function() {
+        		var chart = new CanvasJS.Chart("chartContainer",
+                        {
+                            theme: "theme2",
+                            title: {
+                                text: "Temperature(Fahrenheit) - Last 7 days",
+                                fontWeight:"bold",
+                                fontColor: "#DAA520",
+                                fontSize: 19,
+                                fontFamily: "sans-serif"
+                            },
+                            animationEnabled: true,
+                            axisX: {
+                                gridColor: "Silver",
+                                tickColor: "silver",
+                                valueFormatString: "DDD,MMM DD",
+                                labelAngle: -30
+
+                            },
+                            axisY: {
+                                includeZero: false,
+                                interlacedColor: "#F5F5F5",
+                                gridColor: "#D7D7D7",
+                                tickColor: "#D7D7D7"
+
+                            },
+                            data: [
+                                   {
+                                	   type: "line",
+                                       showInLegend: true,
+                                       lineThickness: 2,
+                                       name: "Temperature",
+                                       legendMarkerType: "square",
+                                       color: "#3CB371",
+                                       dataPoints: [
+                                   {x: new Date(yyyy7, mm7, dd7), y: dew7, indexLabel: "\""+temp7+"\"", indexLabelFontColor: "black"},
+                                   {x: new Date(yyyy6, mm6, dd6), y: temp6, indexLabel: "\""+temp6+"\"", indexLabelFontColor: "black"},
+                                   {x: new Date(yyyy5, mm5, dd5), y: temp5, indexLabel: "\""+temp5+"\"", indexLabelFontColor: "black"},
+                                   {x: new Date(yyyy4, mm4, dd4), y: temp4, indexLabel: "\""+temp4+"\"", indexLabelFontColor: "black"},
+                                   {x: new Date(yyyy3, mm3, dd3), y: temp3, indexLabel: "\""+temp3+"\"", indexLabelFontColor: "black"},
+                                   {x: new Date(yyyy2, mm2, dd2), y: temp2, indexLabel: "\""+temp2+"\"", indexLabelFontColor: "black"},
+                                   {x: new Date(yyyy1, mm1,dd1), y: temp1, indexLabel: "\""+temp1+"\"", indexLabelFontColor: "black"},
+                                   {x: new Date(yyyy, mm, dd), y: temp, indexLabel: "\""+temp+"\"", indexLabelFontColor: "black"}
+                                       ]
+                                   }
+
+
+                                   ]
+                        });
+                    chart.render();
+
+                    
+                    var chart1 = new CanvasJS.Chart("chartContainer1",
+                            {
+                                theme: "theme2",
+                                title: {
+                                    text: "Dew Point Variation(Celsius) - Last 7 days",
+                                    fontWeight:"bold",
+                                    fontColor: "#DAA520",
+                                    fontSize: 19,
+                                    fontFamily: " sans-serif"
+                                },
+                                animationEnabled: true,
+                                axisX: {
+                                    gridColor: "Silver",
+                                    tickColor: "silver",
+                                    valueFormatString: "DDD,MMM DD",
+                                    labelAngle: -30
+                                },
+                                axisY: {
+                                    includeZero: false,
+                                    interlacedColor: "#F5F5F5",
+                                    gridColor: "#D7D7D7",
+                                    tickColor: "#D7D7D7",
+                                },
+                                data: [
+                                    {
+                                        type: "line",
+                                        showInLegend: true,
+                                        lineThickness: 2,
+                                        name: "Dew Point",
+                                        legendMarkerType: "square",
+                                        dataPoints: [
+												{x: new Date(yyyy7, mm7, dd7), y: dew7, indexLabel: "\""+dew7+"\"", indexLabelFontColor: "black"},
+												{x: new Date(yyyy6, mm6, dd6), y: dew6, indexLabel: "\""+dew6+"\"", indexLabelFontColor: "black"},
+												{x: new Date(yyyy5, mm5, dd5), y: dew5, indexLabel: "\""+dew5+"\"", indexLabelFontColor: "black"},
+												{x: new Date(yyyy4, mm4, dd4), y: dew4, indexLabel: "\""+dew4+"\"", indexLabelFontColor: "black"},
+												{x: new Date(yyyy3, mm3, dd3), y: dew3, indexLabel: "\""+dew3+"\"", indexLabelFontColor: "black"},
+												{x: new Date(yyyy2, mm2, dd2), y: dew2, indexLabel: "\""+dew2+"\"", indexLabelFontColor: "black"},
+												{x: new Date(yyyy1, mm1,dd1), y: dew1, indexLabel: "\""+dew1+"\"", indexLabelFontColor: "black"},
+												{x: new Date(yyyy, mm, dd), y: dew, indexLabel: "\""+dew+"\"", indexLabelFontColor: "black"}
+                                        ]
+                                    }
+                                ]
+                            });
+
+                        chart1.render();
+                        
+                        
+                        var chart2 = new CanvasJS.Chart("chartContainer2",
+                                {
+                                    theme: "theme2",
+                                    title: {
+                                        text: "Humidity(g/m^3) - Last 7 days",
+                                        fontWeight:"bold",
+                                        fontColor: "#DAA520",
+                                        fontSize: 19,
+                                        fontFamily: "sans-serif"
+                                    },
+                                    animationEnabled: true,
+                                    axisX: {
+                                        gridColor: "Silver",
+                                        tickColor: "silver",
+                                        valueFormatString: "DDD,MMM DD",
+                                        labelAngle: -30
+                                    },
+                                    axisY: {
+                                        includeZero: false,
+                                        interlacedColor: "#F5F5F5",
+                                        gridColor: "#D7D7D7",
+                                        tickColor: "#D7D7D7"
+                                    },
+                                    data: [
+                                        {
+                                            type: "line",
+                                            showInLegend: true,
+                                            lineThickness: 2,
+                                            name: "Humidity",
+                                            legendMarkerType: "square",
+                                            color: "#FF6347",
+                                            dataPoints: [
+         												   {x: new Date(yyyy7, mm7, dd7), y: humid7, indexLabel: "\""+humid7+"\"", indexLabelFontColor: "black"},
+						                                   {x: new Date(yyyy6, mm6, dd6), y: humid6, indexLabel: "\""+humid6+"\"", indexLabelFontColor: "black"},
+						                                   {x: new Date(yyyy5, mm5, dd5), y: humid5, indexLabel: "\""+humid5+"\"", indexLabelFontColor: "black"},
+						                                   {x: new Date(yyyy4, mm4, dd4), y: humid4, indexLabel: "\""+humid4+"\"", indexLabelFontColor: "black"},
+						                                   {x: new Date(yyyy3, mm3, dd3), y: humid3, indexLabel: "\""+humid3+"\"", indexLabelFontColor: "black"},
+						                                   {x: new Date(yyyy2, mm2, dd2), y: humid2, indexLabel: "\""+humid2+"\"", indexLabelFontColor: "black"},
+						                                   {x: new Date(yyyy1, mm1,dd1), y: humid1, indexLabel: "\""+humid1+"\"", indexLabelFontColor: "black"},
+						                                   {x: new Date(yyyy, mm, dd), y: humid, indexLabel: "\""+humid+"\"", indexLabelFontColor: "black"}
+                                            ]
+                                        }
+                                    ]
+                                });
+
+                            chart2.render();
+        	});
+         	
+                    }
+    </script>
+    <script type="text/javascript" src="canvasjs.min.js"></script>
+</head>
+<body>
+<center>
+<div id="chartContainer" style="height: 250px; width: 50%;">
+</div>
+<div style="height: 10px">
+</div>
+<div id="chartContainer1" style="height: 250px; width: 50%;">
+</div>
+<div style="height: 10px">
+</div>
+<div id="chartContainer2" style="height: 250px; width: 50%;">
+</div>
+</center>
+</body>
+
+</html>

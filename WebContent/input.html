@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCJHknRc0ynWPkKnx7RWnN7Ou2-ukpG8EY" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="canvasjs.min.js"></script>
+	<script type="text/javascript">
+    function initialize() {
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            document.getElementById('city2').value = place.name;
+            document.getElementById('cityLat').value = place.geometry.location.lat();
+            document.getElementById('cityLng').value = place.geometry.location.lng();
+            //alert("This function is working!");
+            //alert(place.name);
+           //alert(place.geometry.location.lat());
+           //alert(place.geometry.location.lng());
+           var lat = place.geometry.location.lat();
+    	var lon = place.geometry.location.lng();
+           getRequest(lat,lon)
+           
+
+        });
+    }
+    
+    function getRequest(lat,lon){
+    	
+    	dbStore("https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+lat+","+lon);
+    	$.post({url:"https://api.darksky.net/forecast/9fbc2f2b22d7ee2e1838d763ae1be08d/"+lat+","+lon,
+    		dataType: 'jsonp',
+    		headers: {
+    			'Access-Control-Allow-Origin' : '*',
+				'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+    			   
+    			   },
+    		    success: function(data, status){
+    		        //alert("Data: " + data + "\nStatus: " + status);
+    		        var jsonString = JSON.stringify(data);
+    		        //alert(jsonString);
+    		        //var obj = jQuery.parseJSON(jsonString);
+    		        //alert(data.currently.temperature);
+    				document.getElementById('temp').innerHTML = data.currently.temperature + "  C";
+    		        document.getElementById('feels').innerHTML = data.currently.apparentTemperature + "  C";
+    		        document.getElementById('dew').innerHTML = data.currently.dewPoint + "  C";
+    		        document.getElementById('humid').innerHTML = data.currently.humidity + "  g/m^3";
+    		        document.getElementById('wind').innerHTML = data.currently.windSpeed + "  m/s";
+    		        //document.getElementById('vis').innerHTML = data.currently.visibility;
+    		        document.getElementById('cloud').innerHTML = data.currently.cloudCover;
+    		        document.getElementById('pres').innerHTML = data.currently.pressure + " HPascal";
+    		        document.getElementById('ozone').innerHTML = data.currently.ozone;
+    		        //document.getElementById('nearStorm').innerHTML = data.currently.nearestStormDistance;
+    		        document.getElementById('summary').innerHTML = data.currently.summary;
+    	 			document.getElementById('temp1').innerHTML = data.daily.data[0].temperatureMax + " C";
+    		        document.getElementById('feels1').innerHTML = data.daily.data[0].apparentTemperatureMax + " C";
+    		        document.getElementById('dew1').innerHTML = data.daily.data[0].dewPoint + " C";
+    		        document.getElementById('humid1').innerHTML = data.daily.data[0].humidity + " g/m^3";
+    		        document.getElementById('wind1').innerHTML = data.daily.data[0].windSpeed + " m/s";
+    		        //document.getElementById('vis1').innerHTML = data.daily.data[0].visibility;
+    		        document.getElementById('cloud1').innerHTML = data.daily.data[0].cloudCover;
+    		        document.getElementById('pres1').innerHTML = data.daily.data[0].pressure + " HPascal";
+    		        document.getElementById('ozone1').innerHTML = data.daily.data[0].ozone;
+    		        //document.getElementById('nearStorm1').innerHTML = data.daily.data[0].nearestStormDistance;
+    		        document.getElementById('summary1').innerHTML = data.daily.data[0].summary;
+    	 			document.getElementById('temp2').innerHTML = data.daily.data[1].temperatureMax + " C";
+    		        document.getElementById('feels2').innerHTML = data.daily.data[1].apparentTemperatureMax + " C";
+    		        document.getElementById('dew2').innerHTML = data.daily.data[1].dewPoint + " C";
+    		        document.getElementById('humid2').innerHTML = data.daily.data[1].humidity + " g/m^3";
+    		        document.getElementById('wind2').innerHTML = data.daily.data[1].windSpeed + " m/s";
+    		        //document.getElementById('vis2').innerHTML = data.daily.data[1].visibility;
+    		        document.getElementById('cloud2').innerHTML = data.daily.data[1].cloudCover;
+    		        document.getElementById('pres2').innerHTML = data.daily.data[1].pressure + " HPascal";
+    		        document.getElementById('ozone2').innerHTML = data.daily.data[1].ozone;
+    		        //document.getElementById('nearStorm2').innerHTML = data.daily.data[1].nearestStormDistance;
+    		        document.getElementById('summary2').innerHTML = data.daily.data[1].summary;
+    	 			document.getElementById('temp3').innerHTML = data.daily.data[2].temperatureMax + " C";
+    		        document.getElementById('feels3').innerHTML = data.daily.data[2].apparentTemperatureMax + " C";
+    		        document.getElementById('dew3').innerHTML = data.daily.data[2].dewPoint + " C";
+    		        document.getElementById('humid3').innerHTML = data.daily.data[2].humidity + " g/m^3";
+    		        document.getElementById('wind3').innerHTML = data.daily.data[2].windSpeed + " m/s";
+    		        //document.getElementById('vis3').innerHTML = data.daily.data[2].visibility;
+    		        document.getElementById('cloud3').innerHTML = data.daily.data[2].cloudCover;
+    		        document.getElementById('pres3').innerHTML = data.daily.data[2].pressure + " HPascal";
+    		        document.getElementById('ozone3').innerHTML = data.daily.data[2].ozone;
+    		        //document.getElementById('nearStorm3').innerHTML = data.daily.data[2].nearestStormDistance;
+    		        document.getElementById('summary3').innerHTML = data.daily.data[2].summary;
+    	 			document.getElementById('temp4').innerHTML = data.daily.data[3].temperatureMax + " C";
+    		        document.getElementById('feels4').innerHTML = data.daily.data[3].apparentTemperatureMax + " C";
+    		        document.getElementById('dew4').innerHTML = data.daily.data[3].dewPoint + " C";
+    		        document.getElementById('humid4').innerHTML = data.daily.data[3].humidity + " g/m^3";
+    		        document.getElementById('wind4').innerHTML = data.daily.data[3].windSpeed + " m/s";
+    		        //document.getElementById('vis4').innerHTML = data.daily.data[3].visibility;
+    		        document.getElementById('cloud4').innerHTML = data.daily.data[3].cloudCover;
+    		        document.getElementById('pres4').innerHTML = data.daily.data[3].pressure + " HPascal";
+    		        document.getElementById('ozone4').innerHTML = data.daily.data[3].ozone;
+    		        //document.getElementById('nearStorm4').innerHTML = data.daily.data[3].nearestStormDistance;
+    		        document.getElementById('summary4').innerHTML = data.daily.data[3].summary;
+    	 			document.getElementById('temp5').innerHTML = data.daily.data[4].temperatureMax + " C";
+    		        document.getElementById('feels5').innerHTML = data.daily.data[4].apparentTemperatureMax + " C";
+    		        document.getElementById('dew5').innerHTML = data.daily.data[4].dewPoint + " C";
+    		        document.getElementById('humid5').innerHTML = data.daily.data[4].humidity + " g/m^3";
+    		        document.getElementById('wind5').innerHTML = data.daily.data[4].windSpeed + " m/s";
+    		        //document.getElementById('vis5').innerHTML = data.daily.data[4].visibility;
+    		        document.getElementById('cloud5').innerHTML = data.daily.data[4].cloudCover;
+    		        document.getElementById('pres5').innerHTML = data.daily.data[4].pressure + " HPascal";
+    		        document.getElementById('ozone5').innerHTML = data.daily.data[4].ozone;
+    		        //document.getElementById('nearStorm5').innerHTML = data.daily.data[4].nearestStormDistance;
+    		        document.getElementById('summary5').innerHTML = data.daily.data[4].summary;
+    	 			document.getElementById('temp6').innerHTML = data.daily.data[5].temperatureMax + " C";
+    		        document.getElementById('feels6').innerHTML = data.daily.data[5].apparentTemperatureMax + " C";
+    		        document.getElementById('dew6').innerHTML = data.daily.data[5].dewPoint + " C";
+    		        document.getElementById('humid6').innerHTML = data.daily.data[5].humidity + " g/m^3";
+    		        document.getElementById('wind6').innerHTML = data.daily.data[5].windSpeed + " m/s";
+    		        //document.getElementById('vis6').innerHTML = data.daily.data[5].visibility;
+    		        document.getElementById('cloud6').innerHTML = data.daily.data[5].cloudCover;
+    		        document.getElementById('pres6').innerHTML = data.daily.data[5].pressure + " HPascal";
+    		        document.getElementById('ozone6').innerHTML = data.daily.data[5].ozone;
+    		        //document.getElementById('nearStorm6').innerHTML = data.daily.data[5].nearestStormDistance;
+    		        document.getElementById('summary6').innerHTML = data.daily.data[5].summary;
+    	 			document.getElementById('temp7').innerHTML = data.daily.data[6].temperatureMax + " C";
+    		        document.getElementById('feels7').innerHTML = data.daily.data[6].apparentTemperatureMax + " C";
+    		        document.getElementById('dew7').innerHTML = data.daily.data[6].dewPoint + " C";
+    		        document.getElementById('humid7').innerHTML = data.daily.data[6].humidity + " g/m^3";
+    		        document.getElementById('wind7').innerHTML = data.daily.data[6].windSpeed + " m/s";
+    		        //document.getElementById('vis7').innerHTML = data.daily.data[6].visibility;
+    		        document.getElementById('cloud7').innerHTML = data.daily.data[6].cloudCover;
+    		        document.getElementById('pres7').innerHTML = data.daily.data[6].pressure + " HPascal";
+    		        document.getElementById('ozone7').innerHTML = data.daily.data[6].ozone;
+    		        //document.getElementById('nearStorm7').innerHTML = data.daily.data[6].nearestStormDistance;
+    		        document.getElementById('summary7').innerHTML = data.daily.data[6].summary;
+    		        document.getElementById("table").style.visibility ="visible";
+    		        
+    		    }});
+    }
+    
+
+
+    var xmlhttp;
+    var xmlhttp;
+    function ajaxGeneric(url, func){
+
+    	
+    	if (window.XMLHttpRequest)
+    		
+    	{
+    		// code for IE7+, Firefox, Chrome, Opera, Safari
+    		xmlhttp=new XMLHttpRequest();
+    		
+    	}
+    	else
+    	{
+    		// code for IE6, IE5
+    		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    	}
+    	
+    			xmlhttp.onreadystatechange= func;
+    			xmlhttp.open("GET",url,false);
+    			xmlhttp.send(null);
+    		
+    }
+
+    function dbStore(url)
+    	{
+
+    	
+    	var url_temp1 = "dbStore.jsp?url="+url+"&time="+new Date().getTime();
+    		
+    		ajaxGeneric(url_temp1,function()
+    	{
+    	
+    	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    }
+    	});
+
+    	}
+    
+   	function browsehistory(){
+   		alert("browsehistory");
+   		var url_temp1 = "browseHistory.jsp?time="+new Date().getTime();
+		
+		ajaxGeneric(url_temp1,function()
+	{
+	
+	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+{
+}
+	});
+   		
+   		
+   	}
+    
+    function history(){
+        var lat = document.getElementById('cityLat').value;
+        var lon = document.getElementById('cityLng').value;
+        var data = lat + "," + lon
+    	window.location.href="TemperatureGraph.html?data="+data
+    	
+    }
+
+
+    google.maps.event.addDomListener(window, 'load', initialize); 
+</script>
+    </head>
+    <body>
+  
+   
+    <div style="height: 50px;">
+</div>
+   <center> <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" /></center>
+   <div style="height: 10px">
+</div>
+ <center><input type = "button" value="Charts" onclick = "history();">
+ <input type = "button" value="Browse History" onclick = "window.location = 'browseHistory.jsp';">
+ </center>
+<input type ="hidden" id="city2" name="city2" />
+<input type="hidden" id="cityLat" name="cityLat" />
+<input type="hidden" id="cityLng" name="cityLng" />
+<br/>
+<br/>
+<br/>
+<br/>
+<table border="1" id="table" style="visibility: hidden;">
+  <tr>
+    <th>Weather</th>
+    <th>Today</th>
+    <th>Day 1</th>
+    <th>Day 2</th>
+    <th>Day 3</th>
+    <th>Day 4</th>
+    <th>Day 5</th>
+    <th>Day 6</th>
+    <th>Day 7</th>
+  </tr>
+  <tr>
+    <td>Temperature</td>
+    <td id="temp"></td>
+    <td id="temp1"></td>
+    <td id="temp2"></td>
+    <td id="temp3"></td>
+    <td id="temp4"></td>
+    <td id="temp5"></td>
+    <td id="temp6"></td>
+    <td id="temp7"></td> 
+  </tr>
+  <tr>
+    <td>Feels Like</td>
+    <td id="feels"></td>
+    <td id="feels1"></td>
+    <td id="feels2"></td>
+    <td id="feels3"></td>
+    <td id="feels4"></td>
+    <td id="feels5"></td>
+    <td id="feels6"></td>
+    <td id="feels7"></td>
+  </tr>
+  <tr>
+    <td>Dew Point</td>
+    <td id="dew"></td>
+    <td id="dew1"></td>
+    <td id="dew2"></td>
+    <td id="dew3"></td>
+    <td id="dew4"></td>
+    <td id="dew5"></td>
+    <td id="dew6"></td>
+    <td id="dew7"></td>
+  </tr>
+  <tr>
+    <td>Humidity</td>
+    <td id = "humid"></td>
+    <td id = "humid1"></td>
+    <td id = "humid2"></td>
+    <td id = "humid3"></td>
+    <td id = "humid4"></td>
+    <td id = "humid5"></td>
+    <td id = "humid6"></td>
+    <td id = "humid7"></td>
+  </tr>
+  <tr>
+    <td>Wind Speed</td>
+    <td id="wind"></td>
+    <td id="wind1"></td>
+    <td id="wind2"></td>
+    <td id="wind3"></td>
+    <td id="wind4"></td>
+    <td id="wind5"></td>
+    <td id="wind6"></td>
+    <td id="wind7"></td>
+  </tr>
+<!--   <tr>
+    <td>Visibility</td>
+    <td id = "vis"></td>
+    <td id = "vis1"></td>
+    <td id = "vis2"></td>
+    <td id = "vis3"></td>
+    <td id = "vis4"></td>
+    <td id = "vis5"></td>
+    <td id = "vis6"></td>
+    <td id = "vis7"></td>
+  </tr> -->
+  <tr>
+    <td>Cloud Cover</td>
+    <td id="cloud"></td>
+    <td id="cloud1"></td>
+    <td id="cloud2"></td>
+    <td id="cloud3"></td>
+    <td id="cloud4"></td>
+    <td id="cloud5"></td>
+    <td id="cloud6"></td>
+    <td id="cloud7"></td>
+  </tr>
+  <tr>
+    <td>Pressure</td>
+    <td id="pres"></td>
+    <td id="pres1"></td>
+    <td id="pres2"></td>
+    <td id="pres3"></td>
+    <td id="pres4"></td>
+    <td id="pres5"></td>
+    <td id="pres6"></td>
+    <td id="pres7"></td>
+  </tr>
+  <tr>
+    <td>Ozone</td>
+    <td id="ozone"></td>
+    <td id="ozone1"></td>
+    <td id="ozone2"></td>
+    <td id="ozone3"></td>
+    <td id="ozone4"></td>
+    <td id="ozone5"></td>
+    <td id="ozone6"></td>
+    <td id="ozone7"></td>
+  </tr>
+  <tr>
+    <td>Summary</td>
+    <td id="summary"></td>
+    <td id="summary1"></td>
+    <td id="summary2"></td>
+    <td id="summary3"></td>
+    <td id="summary4"></td>
+    <td id="summary5"></td>
+    <td id="summary6"></td>
+    <td id="summary7"></td>
+  </tr>
+</table>
+
+    </body>
+</html>

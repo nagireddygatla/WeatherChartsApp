@@ -1,0 +1,40 @@
+<html>
+    <head>
+    <meta charset="ISO-8859-1">
+        <title>Login page</title>
+        <script type="text/JavaScript" src="main.js"></script>
+    <script type = "text/javascript">
+        
+    function validation()
+    
+    {    	
+    	if(document.login.userid.value == "")
+		{
+		
+		alert("Please enter Username!");
+		document.login.userid.focus();
+		return false;    		
+		}
+    	
+    	
+    }
+    
+    
+    </script>
+    </head>
+    <center>
+    <body  bgcolor = "#CCFFCC">
+        <h1>BlueWolf Assessment</h1>
+        <form name="login" method="post" action="login.jsp" onsubmit="return validation()">
+        	<table id = "initpage">
+        	<tr>
+            <tr><td>Username:</td><td><input type="text" id = "userid" name="userid"/></td></tr>
+            <tr></tr> <tr></tr><tr></tr><tr></tr>
+            <tr><td></td><td><input type="submit" value="Login"/>
+            <input type="reset" value="Reset"/></td></tr>
+            </table><br/>
+            <div id="loginResult"></div>
+        </form>
+    </body>
+    </center>
+</html>
